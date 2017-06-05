@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show all users</title>
+</head>
+<!--第一步：引入Javascript / CSS （CDN）-->
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    <!--第三步：初始化Datatables-->
+    $.noConflict();
+    jQuery(document).ready(function() {
+        jQuery('#table_id_example').dataTable({
+            "ajax" : {
+                "url" : "/list",
+                "type" : "GET",
+                "data" : {
+                    "page" : "1"
+                }
+            },
+            "aoColumns" : [
+                {"data" : "name"},
+                {"data" : "address"},
+                {"data" : "lat"},
+                {"data" : "lot"},
+            ],
+            "oLanguage" : {
+                "sLengthMenu" : "每页显示 _MENU_ 条记录",
+                "sZeroRecords" : "对不起，没有匹配的数据",
+                "sInfo" : "第 _START_ - _END_ 条 / 共 _TOTAL_ 条数据",
+                "sInfoEmpty" : "没有匹配的数据",
+                "sInfoFiltered" : "(数据表中共 _MAX_ 条记录)",
+                "sProcessing" : "正在加载中...",
+                "sSearch" : "全文搜索：",
+                "sEmptyTable": "没有数据...",
+                "sInfoEmpty": "共 _TOTAL_ 条数据",
+                "oPaginate" : {
+                    "sFirst" : "第一页",
+                    "sPrevious" : " 上一页 ",
+                    "sNext" : " 下一页 ",
+                    "sLast" : " 最后一页 "
+                }
+            },
+        });
+    });
+
+</script>
+<body>
+<!--第二步：添加如下 HTML 代码-->
+<table id="table_id_example" class="display">
+    <thead>
+    <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</body>
+</html>
